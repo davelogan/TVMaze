@@ -16,6 +16,7 @@
 
 package com.dlogan.android.tvmaze.ui.onnowscreen
 
+import android.content.Context
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import android.view.ViewGroup
@@ -35,7 +36,9 @@ import com.dlogan.android.tvmaze.data.ScheduledShow
  * @see android.arch.paging.PagedListAdapter
  * @see android.arch.paging.AsyncPagedListDiffer
  */
-class ShowAdapter : PagedListAdapter<ScheduledShow, ShowViewHolder>(diffCallback) {
+class ShowAdapter: PagedListAdapter<ScheduledShow, ShowViewHolder>(diffCallback) {
+
+
     override fun onBindViewHolder(holder: ShowViewHolder, position: Int) {
         holder.bindTo(getItem(position))
     }

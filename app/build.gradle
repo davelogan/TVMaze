@@ -86,7 +86,9 @@ dependencies {
     kapt 'androidx.room:room-compiler:2.1.0-alpha07'
     implementation deps.work.runtime_ktx
 
-    //implementation deps.work.viewmodel_ktx
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
 
 }

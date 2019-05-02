@@ -23,7 +23,7 @@
     android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.onnowscreen.About"
+    tools:context=".ui.aboutmescreen.AboutMe"
     tools:layout_editor_absoluteY="81dp">
 
     <TextView

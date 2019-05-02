@@ -25,7 +25,7 @@
 
 
     <ImageView
-        android:id="@+id/user_avatar_image"
+        android:id="@+id/show_image"
         android:layout_width="69dp"
         android:layout_height="69dp"
         android:layout_marginStart="8dp"
@@ -35,7 +35,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/avatar_5_raster"
+        android:background="@android:color/background_light"
         app:srcCompat="@drawable/circle"
         tools:background="@tools:sample/avatars"
         tools:srcCompat="@drawable/circle"
@@ -43,7 +43,7 @@
 
 
     <TextView
-        android:id="@+id/user_name_text"
+        android:id="@+id/show_name"
         android:layout_width="228dp"
         android:layout_height="28dp"
         android:layout_marginStart="8dp"
@@ -51,24 +51,24 @@
         android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/user_points_text"
-        app:layout_constraintStart_toEndOf="@+id/user_avatar_image"
+        app:layout_constraintBottom_toTopOf="@+id/episode_name"
+        app:layout_constraintStart_toEndOf="@+id/show_image"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@tools:sample/full_names"
+        tools:text=""
         android:layout_marginLeft="8dp" />
 
     <TextView
-        android:id="@+id/user_points_text"
+        android:id="@+id/episode_name"
         android:layout_width="228dp"
         android:layout_height="21dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
-        android:text="@string/user_points"
+        android:text=""
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/user_avatar_image"
-        app:layout_constraintTop_toBottomOf="@+id/user_name_text"
-        tools:text="10,000 pts"
+        app:layout_constraintStart_toEndOf="@+id/show_image"
+        app:layout_constraintTop_toBottomOf="@+id/show_name"
+        tools:text=""
         android:layout_marginLeft="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

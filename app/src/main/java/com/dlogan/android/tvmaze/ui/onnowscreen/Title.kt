@@ -26,9 +26,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.dlogan.android.tvmaze.R
 
-/**
- * Shows the main title screen with a button that navigates to [About].
- */
+
 class Title : Fragment() {
 
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
@@ -46,7 +44,7 @@ class Title : Fragment() {
 
         // Create adapter for the RecyclerView
         val adapter = ShowAdapter()
-        view.findViewById<RecyclerView>(R.id.cheeseList).adapter = adapter
+        view.findViewById<RecyclerView>(R.id.show_list).adapter = adapter
 
         // Subscribe the adapter to the ViewModel, so the items in the adapter are refreshed
         // when the list changes

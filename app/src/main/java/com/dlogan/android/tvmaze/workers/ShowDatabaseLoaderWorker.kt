@@ -49,11 +49,10 @@ class ShowDatabaseLoaderWorker(context: Context, workerParams: WorkerParameters)
         //db.scheduledShowDao().nukeTable()
 
         for(item in scheduleItems) {
-            var item = convert(item)
-            if (item != null) {
-                db.scheduledShowDao().insert(item)
+            var show: ScheduledShow? = convert(item)
+            if (show != null) {
+                db.scheduledShowDao().insert(show)
             }
-
         }
     }
 

@@ -24,7 +24,7 @@
     tools:context="com.dlogan.android.tvmaze.ui.onnowscreen.Title">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cheeseList"
+        android:id="@+id/show_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"

@@ -16,18 +16,24 @@
 
 package com.dlogan.android.tvmaze.ui.onnowscreen
 
+import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.dlogan.android.tvmaze.R
 import com.dlogan.android.tvmaze.data.ScheduledShow
 
 
 class ShowViewHolder(parent :ViewGroup) : RecyclerView.ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.show_item, parent, false)) {
+        LayoutInflater.from(parent.context).inflate(R.layout.show_item_new, parent, false)) {
 
-    private val nameView = itemView.findViewById<TextView>(R.id.name)
+    private val showNameView = itemView.findViewById<TextView>(R.id.show_name)
+    private val showImageView = itemView.findViewById<ImageView>(R.id.show_image)
+    private val episodeNameView = itemView.findViewById<TextView>(R.id.episode_name)
+
     var show : ScheduledShow? = null
 
     /**
@@ -36,6 +42,14 @@ class ShowViewHolder(parent :ViewGroup) : RecyclerView.ViewHolder(
      */
     fun bindTo(show : ScheduledShow?) {
         this.show = show
-        nameView.text = show?.showName
+        showNameView.text = show?.showName
+        episodeNameView.text = show?.episodeName
+
+        if (show?.imageMedium != null) {
+            Glide.with(showImageView).load(show.imageMedium).into(showImageView)
+        } else {
+            Glide.with(showImageView).load(R.drawable.baseline_theaters_black_24).into(showImageView)
+        }
+
     }
 }

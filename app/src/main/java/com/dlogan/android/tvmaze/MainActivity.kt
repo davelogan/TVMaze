@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState
 
-        tmpLoadDatabase()
+        //tmpLoadDatabase()
     }
 
     //TODO do this once per day, do not do here

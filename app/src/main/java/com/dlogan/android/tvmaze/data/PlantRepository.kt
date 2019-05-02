@@ -16,6 +16,9 @@
 
 package com.dlogan.android.tvmaze.data
 
+import androidx.paging.DataSource
+
+
 /**
  * Repository module for handling data operations.
  */
@@ -25,6 +28,7 @@ class PlantRepository private constructor(private val scheduledShowDao: Schedule
 
     fun getShow(showId: Long) = scheduledShowDao.getShow(showId)
 
+    fun allNotes(): DataSource.Factory<Int, ScheduledShow> = scheduledShowDao.allShows()
 
     companion object {
 

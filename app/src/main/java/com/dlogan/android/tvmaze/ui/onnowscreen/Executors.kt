@@ -1,5 +1,5 @@
 /*
- * Copyright 2019, The Android Open Source Project
+ * Copyright (C) 2017 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,23 +14,15 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.ui.homescreen
+package com.dlogan.android.tvmaze.ui.onnowscreen
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.dlogan.android.tvmaze.R
+import java.util.concurrent.Executors
+
+private val IO_EXECUTOR = Executors.newSingleThreadExecutor()
 
 /**
- * Shows "About"
+ * Utility method to run blocks on a dedicated background thread, used for io/database work.
  */
-class About : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.fragment_about, container, false)
-    }
+fun ioThread(f : () -> Unit) {
+    IO_EXECUTOR.execute(f)
 }

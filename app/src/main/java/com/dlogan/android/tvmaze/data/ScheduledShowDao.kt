@@ -21,6 +21,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.paging.DataSource
 
 /**
  * The Data Access Object for the ScheduledShow class.
@@ -41,4 +42,10 @@ interface ScheduledShowDao {
 
     @Query("DELETE FROM epg")
     fun nukeTable()
+
+    @Query("SELECT count(id) FROM epg")
+    fun count(): Long
+
+    @Query("SELECT * FROM epg ORDER BY startTime DESC")
+    fun allShows(): DataSource.Factory<Int, ScheduledShow>
 }

@@ -16,10 +16,6 @@
 
 package com.dlogan.android.tvmaze.utilities
 
-import android.content.Context
-import com.dlogan.android.tvmaze.data.AppDatabase
-import com.dlogan.android.tvmaze.data.PlantRepository
-
 /**
  * Static methods used to inject classes needed for various Activities and Fragments.
  */
@@ -27,7 +23,7 @@ object InjectorUtils {
 
 //    private fun getPlantRepository(context: Context): PlantRepository {
 //        return PlantRepository.getInstance(
-//                AppDatabase.getDatabase(context.applicationContext).plantDao())
+//                EpgDatabase.getDatabase(context.applicationContext).plantDao())
 //    }
 
 //    fun providePlantListViewModelFactory(context: Context): PlantListViewModelFactory {

@@ -24,18 +24,18 @@ import androidx.room.TypeConverters
 import com.dlogan.android.tvmaze.utilities.DATABASE_NAME
 
 /**
- * The Room database for this app
+ * The Room database for this EPG (Electronic Programming API)
  */
 @Database(entities = [ScheduledShow::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase() {
+abstract class EpgDatabase : RoomDatabase() {
     abstract fun scheduledShowDao(): ScheduledShowDao
 
     companion object {
         @Volatile
-        private var INSTANCE: AppDatabase? = null
+        private var INSTANCE: EpgDatabase? = null
 
-        fun getDatabase(context: Context): AppDatabase {
+        fun getDatabase(context: Context): EpgDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -43,7 +43,7 @@ abstract class AppDatabase : RoomDatabase() {
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                         context.applicationContext,
-                        AppDatabase::class.java,
+                        EpgDatabase::class.java,
                         DATABASE_NAME
                 ).build()
                 INSTANCE = instance

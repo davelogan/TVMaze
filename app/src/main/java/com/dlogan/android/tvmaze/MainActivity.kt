@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         tmpLoadDatabase()
     }
 
+    //TODO do this once per day, do not do here
     fun tmpLoadDatabase() {
         val request = OneTimeWorkRequestBuilder<ShowDatabaseLoaderWorker>().build()
         WorkManager.getInstance(this).enqueue(request)

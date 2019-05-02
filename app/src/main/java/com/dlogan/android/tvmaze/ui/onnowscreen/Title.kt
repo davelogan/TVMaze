@@ -14,29 +14,47 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.ui.homescreen
+package com.dlogan.android.tvmaze.ui.onnowscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 import com.dlogan.android.tvmaze.R
 
 /**
  * Shows the main title screen with a button that navigates to [About].
  */
 class Title : Fragment() {
+
+    private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
+        ViewModelProviders.of(this).get(ShowViewModel::class.java)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_title, container, false)
 
-        view.findViewById<Button>(R.id.about_btn).setOnClickListener {
-            findNavController().navigate(R.id.action_title_to_about)
-        }
+//        view.findViewById<Button>(R.id.about_btn).setOnClickListener {
+//            findNavController().navigate(R.id.action_title_to_about)
+//        }
+
+        // Create adapter for the RecyclerView
+        val adapter = ShowAdapter()
+        view.findViewById<RecyclerView>(R.id.cheeseList).adapter = adapter
+
+        // Subscribe the adapter to the ViewModel, so the items in the adapter are refreshed
+        // when the list changes
+        viewModel.allCheeses.observe(this, Observer(adapter::submitList))
+
         return view
     }
+
+
+
 }

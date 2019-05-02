@@ -19,11 +19,11 @@ package com.dlogan.android.tvmaze.workers
 import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.dlogan.android.tvmaze.data.AppDatabase
+import com.dlogan.android.tvmaze.data.EpgDatabase
 import com.dlogan.android.tvmaze.data.ScheduledShow
 import com.dlogan.android.tvmaze.proxy.TVMazeApiService
 import com.dlogan.android.tvmaze.proxy.dto.ScheduleItemDto
-import com.dlogan.android.tvmaze.utilities.LogUtil
+import com.dlogan.android.tvmaze.utilities.DaoMapper
 
 class ShowDatabaseLoaderWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
 
@@ -44,32 +44,24 @@ class ShowDatabaseLoaderWorker(context: Context, workerParams: WorkerParameters)
     }
 
     private fun sync(scheduleItems: List<ScheduleItemDto>) {
-        val db = AppDatabase.getDatabase(applicationContext)
+        val db = EpgDatabase.getDatabase(applicationContext)
         //delete everything, the data is only good for one day at most
         //db.scheduledShowDao().nukeTable()
 
         for(item in scheduleItems) {
-            db.scheduledShowDao().insert(convert(item))
+            var item = convert(item)
+            if (item != null) {
+                db.scheduledShowDao().insert(item)
+            }
+
         }
     }
 
-    private fun convert(dto: ScheduleItemDto): ScheduledShow {
-        val startTime = dto.getStartTime()
-        val scheduledShow = ScheduledShow(
-                dto.id,
-                dto.embedded.show.name,
-                dto.name,
-                dto.season,
-                dto.number,
-                startTime,
-                dto.getEndTime(startTime),
-                dto.embedded.show.image?.medium,
-                dto.embedded.show.image?.original,
-                dto.embedded.show.summary,
-                dto.embedded.show.getCountryCode(),
-                dto.embedded.show.id
-        )
-        LogUtil.debug("DB", scheduledShow.toString())
-        return scheduledShow
+    private fun convert(dto: ScheduleItemDto): ScheduledShow? {
+        return try  {
+            DaoMapper.convert(dto)
+        } catch (ex: java.lang.Exception) {
+            null
+        }
     }
 }

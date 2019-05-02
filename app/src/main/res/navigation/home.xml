@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/titleScreen"
-        android:name="com.dlogan.android.tvmaze.ui.homescreen.Title"
+        android:name="com.dlogan.android.tvmaze.ui.onnowscreen.Title"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_title">
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutScreen"
-        android:name="com.dlogan.android.tvmaze.ui.homescreen.About"
+        android:name="com.dlogan.android.tvmaze.ui.onnowscreen.About"
         android:label="@string/title_about"
         tools:layout="@layout/fragment_about"/>
 </navigation>

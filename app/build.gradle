@@ -48,6 +48,12 @@ dependencies {
     implementation deps.support.core_ktx
     implementation deps.constraint_layout
     implementation deps.arch_core.runtime
+    implementation deps.support.recyclerview
+    implementation deps.room.runtime
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    implementation deps.paging_ktx
+    implementation deps.kotlin.stdlib
 
     // Retrofit
     // TODO move versions to versions file
@@ -55,7 +61,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
-    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+    implementation deps.paging_ktx
 
 
     // Navigation
@@ -80,7 +87,6 @@ dependencies {
     implementation deps.work.runtime_ktx
 
     //implementation deps.work.viewmodel_ktx
-
 
 
 }

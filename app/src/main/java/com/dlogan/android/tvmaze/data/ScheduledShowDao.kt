@@ -48,4 +48,7 @@ interface ScheduledShowDao {
 
     @Query("SELECT * FROM epg ORDER BY startTime DESC")
     fun allShows(): DataSource.Factory<Int, ScheduledShow>
+
+    @Query("SELECT * FROM epg ORDER BY startTime DESC")
+    fun onNowShows(): DataSource.Factory<Int, ScheduledShow>
 }

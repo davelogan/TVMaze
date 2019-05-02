@@ -36,7 +36,7 @@ class OnNowFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_title, container, false)
+        val view = inflater.inflate(R.layout.fragment_onnow, container, false)
 
 //        view.findViewById<Button>(R.id.about_btn).setOnClickListener {
 //            findNavController().navigate(R.id.action_title_to_about)
@@ -55,8 +55,6 @@ class OnNowFragment : Fragment() {
 
     companion object {
         const val SCHEDULE_ID_KEY = "SCHEDULE_ID_KEY"
-        const val SHOW_ID_KEY = "SHOW_ID_KEY"
-
     }
 
 }

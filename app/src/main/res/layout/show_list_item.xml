@@ -21,7 +21,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/background_light"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="81dp"
+    android:focusable="true"
+    android:clickable="true">
 
 
     <ImageView
@@ -39,7 +41,10 @@
         app:srcCompat="@drawable/circle"
         tools:background="@tools:sample/avatars"
         tools:srcCompat="@drawable/circle"
-        android:contentDescription="@string/show_image"/>
+        android:contentDescription="@string/show_image"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:clickable="false"/>
 
 
     <TextView

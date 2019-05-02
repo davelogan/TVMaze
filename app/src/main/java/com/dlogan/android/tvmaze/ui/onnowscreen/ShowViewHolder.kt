@@ -16,9 +16,6 @@
 
 package com.dlogan.android.tvmaze.ui.onnowscreen
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -30,9 +27,7 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.dlogan.android.tvmaze.R
 import com.dlogan.android.tvmaze.data.ScheduledShow
-import com.dlogan.android.tvmaze.ui.listscreen.MyAdapter
 import com.dlogan.android.tvmaze.ui.onnowscreen.OnNowFragment.Companion.SCHEDULE_ID_KEY
-import com.dlogan.android.tvmaze.ui.onnowscreen.OnNowFragment.Companion.SHOW_ID_KEY
 
 
 class ShowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -46,21 +41,8 @@ class ShowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     companion object {
         fun create(parent: ViewGroup): ShowViewHolder {
             val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.show_item_new, parent, false)
+                    .inflate(R.layout.show_list_item, parent, false)
             return ShowViewHolder(view)
-        }
-    }
-
-    init {
-        view.setOnClickListener {
-            view.setOnClickListener {
-                val bundle = bundleOf(SCHEDULE_ID_KEY to this.show?.id, SHOW_ID_KEY to this.show?.showId)
-                //val bundle = bundleOf(SCHEDULE_ID_KEY to this.show?.id)
-
-                view.findNavController().navigate(
-                        R.id.action_showlist_to_ushow_detail,
-                        bundle)
-            }
         }
     }
 
@@ -78,5 +60,13 @@ class ShowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         } else {
             Glide.with(showImageView).load(R.drawable.baseline_theaters_black_24).into(showImageView)
         }
+
+        itemView.setOnClickListener {
+                val bundle = bundleOf(SCHEDULE_ID_KEY to this.show?.id)
+            itemView.findNavController().navigate(
+                        R.id.action_showlist_to_ushow_detail,
+                        bundle)
+            }
+
     }
 }

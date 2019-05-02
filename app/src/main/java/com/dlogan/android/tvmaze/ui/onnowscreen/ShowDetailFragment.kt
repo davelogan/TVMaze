@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.ui.aboutmescreen
+package com.dlogan.android.tvmaze.ui.onnowscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,15 +22,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.dlogan.android.tvmaze.R
+import com.dlogan.android.tvmaze.data.EpgDatabase
+import com.dlogan.android.tvmaze.ui.onnowscreen.OnNowFragment.Companion.SCHEDULE_ID_KEY
+
 
 /**
- * Shows "About"
+ * Shows a profile screen for a user, taking the name from the arguments.
  */
-class AboutMe : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+class ShowDetailFragment : Fragment() {
 
-        return inflater.inflate(R.layout.fragment_about_me, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+
+
+        val view = inflater.inflate(R.layout.fragment_show_detail, container, false)
+
+        val scheduleId = arguments?.getLong(SCHEDULE_ID_KEY)
+
+        val show = EpgDatabase.getDatabase(this.context!!).scheduledShowDao().getShow(scheduleId!!)
+
+        //view.findViewById<TextView>(R.id.profile_user_name).text = name
+        return view
     }
 }

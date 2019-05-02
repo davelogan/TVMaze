@@ -27,7 +27,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dlogan.android.tvmaze.R
 
 
-class Title : Fragment() {
+class OnNowFragment : Fragment() {
 
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
         ViewModelProviders.of(this).get(ShowViewModel::class.java)
@@ -48,11 +48,15 @@ class Title : Fragment() {
 
         // Subscribe the adapter to the ViewModel, so the items in the adapter are refreshed
         // when the list changes
-        viewModel.allCheeses.observe(this, Observer(adapter::submitList))
+        viewModel.allShows.observe(this, Observer(adapter::submitList))
 
         return view
     }
 
+    companion object {
+        const val SCHEDULE_ID_KEY = "SCHEDULE_ID_KEY"
+        const val SHOW_ID_KEY = "SHOW_ID_KEY"
 
+    }
 
 }

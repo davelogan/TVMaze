@@ -41,10 +41,12 @@ class MainActivity : AppCompatActivity() {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState
 
+        ApplicationCrashHandler.installHandler()
+
+        //TODO do this once per day, do not do here
         //tmpLoadDatabase()
     }
 
-    //TODO do this once per day, do not do here
     fun tmpLoadDatabase() {
         val request = OneTimeWorkRequestBuilder<ShowDatabaseLoaderWorker>().build()
         WorkManager.getInstance(this).enqueue(request)

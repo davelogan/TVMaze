@@ -43,8 +43,9 @@ class ShowAdapter: PagedListAdapter<ScheduledShow, ShowViewHolder>(diffCallback)
         holder.bindTo(getItem(position))
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowViewHolder =
-            ShowViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowViewHolder {
+        return ShowViewHolder.create(parent)
+    }
 
     companion object {
         /**

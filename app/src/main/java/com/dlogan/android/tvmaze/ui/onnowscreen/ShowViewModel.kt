@@ -32,7 +32,7 @@ class ShowViewModel(app: Application) : AndroidViewModel(app) {
      * We use -ktx Kotlin extension functions here, otherwise you would use LivePagedListBuilder(),
      * and PagedList.Config.Builder()
      */
-    val allCheeses = dao.allShows().toLiveData(Config(
+    val allShows = dao.allShows().toLiveData(Config(
             /**
              * A good page size is a value that fills at least a screen worth of content on a large
              * device so the User is unlikely to see a null item.

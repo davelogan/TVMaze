@@ -22,6 +22,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.paging.DataSource
+import java.util.*
 
 /**
  * The Data Access Object for the ScheduledShow class.
@@ -49,6 +50,6 @@ interface ScheduledShowDao {
     @Query("SELECT * FROM epg ORDER BY startTime DESC")
     fun allShows(): DataSource.Factory<Int, ScheduledShow>
 
-    @Query("SELECT * FROM epg ORDER BY startTime DESC")
-    fun onNowShows(): DataSource.Factory<Int, ScheduledShow>
+    @Query("SELECT * FROM epg WHERE :nowDate BETWEEN startTime AND endTime ORDER BY startTime DESC")
+    fun onNowShows(nowDate: Date): DataSource.Factory<Int, ScheduledShow>
 }

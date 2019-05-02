@@ -22,10 +22,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.dlogan.android.tvmaze.workers.ShowDatabaseLoaderWorker
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.concurrent.TimeUnit
 
 /**
  * An activity that inflates a layout that has a [BottomNavigationView].
@@ -42,14 +42,32 @@ class MainActivity : AppCompatActivity() {
         } // Else, need to wait for onRestoreInstanceState
 
         ApplicationCrashHandler.installHandler()
-
-        //TODO do this once per day, do not do here
-        //tmpLoadDatabase()
     }
 
-    fun tmpLoadDatabase() {
-        val request = OneTimeWorkRequestBuilder<ShowDatabaseLoaderWorker>().build()
+    override fun onResume() {
+        super.onResume()
+        loadDatabase()
+    }
+
+    /**
+     * Will only actually re-load the database if it has never ran or if less than x hours.
+     */
+    fun loadDatabase() {
+        val constraints = Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .build()
+        val request = OneTimeWorkRequestBuilder<ShowDatabaseLoaderWorker>()
+                .setConstraints(constraints)
+                .build()
         WorkManager.getInstance(this).enqueue(request)
+
+        //The PeriodicWorkRequestBuilder is in alpha and is buggy
+//        val workRequest = PeriodicWorkRequestBuilder<ShowDatabaseLoaderWorker>(1, TimeUnit.MINUTES)
+//                .setConstraints(constraints)
+//                .build()
+        //WorkManager.getInstance(this).enqueueUniquePeriodicWork("sync epg", ExistingPeriodicWorkPolicy.KEEP, workRequest)
+        //WorkManager.getInstance(this).enqueueUniquePeriodicWork("sync epg", ExistingPeriodicWorkPolicy.KEEP, workRequest)
+
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {

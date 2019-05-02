@@ -48,7 +48,7 @@ class OnNowFragment : Fragment() {
 
         // Subscribe the adapter to the ViewModel, so the items in the adapter are refreshed
         // when the list changes
-        viewModel.allShows.observe(this, Observer(adapter::submitList))
+        viewModel.currentShows.observe(this, Observer(adapter::submitList))
 
         return view
     }

@@ -1,19 +1,3 @@
-/*
- * Copyright 2018 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.dlogan.android.tvmaze.workers
 
 import android.content.Context
@@ -24,16 +8,41 @@ import com.dlogan.android.tvmaze.data.ScheduledShow
 import com.dlogan.android.tvmaze.proxy.TVMazeApiService
 import com.dlogan.android.tvmaze.proxy.dto.ScheduleItemDto
 import com.dlogan.android.tvmaze.utilities.DaoMapper
+import com.dlogan.android.tvmaze.utilities.LogUtil
+import com.dlogan.android.tvmaze.utilities.Prefs
 
 class ShowDatabaseLoaderWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
 
+    companion object {
+        //refresh at most every 12 hours
+        const val minInterval = 43200000L
+
+        //1 min
+        //const val minInterval = 60000L
+    }
+
     override fun doWork(): Result {
+        val prefs = Prefs(applicationContext)
+
+        val lastSyncTime = prefs.getLastSyncTimestamp()
+        val nowTime = System.currentTimeMillis()
+
+        if (nowTime-lastSyncTime < minInterval) {
+            // No need to get the data from the api again
+            LogUtil.debug("ShowDatabaseLoaderWorker", "No need to get the data from the api again. We already have updated data")
+            return Result.success()
+        }
+
         try {
             val api = TVMazeApiService.create()
             val shows = api.getShows().execute()
             if (shows.isSuccessful) {
                 shows.let {
                     sync(it.body()!!)
+
+                    //save last sync time
+                    prefs.setLastSyncTimestamp(System.currentTimeMillis())
+
                     return Result.success()
                 }
             }
@@ -44,9 +53,8 @@ class ShowDatabaseLoaderWorker(context: Context, workerParams: WorkerParameters)
     }
 
     private fun sync(scheduleItems: List<ScheduleItemDto>) {
+        LogUtil.debug("ShowDatabaseLoaderWorker", "syncing db")
         val db = EpgDatabase.getDatabase(applicationContext)
-        //delete everything, the data is only good for one day at most
-        //db.scheduledShowDao().nukeTable()
 
         for(item in scheduleItems) {
             var show: ScheduledShow? = convert(item)

@@ -24,7 +24,7 @@
 
     <fragment
             android:id="@+id/leaderboard"
-            android:name="com.dlogan.android.tvmaze.listscreen.Leaderboard"
+            android:name="com.dlogan.android.tvmaze.ui.listscreen.Leaderboard"
             android:label="@string/title_list"
             tools:layout="@layout/fragment_leaderboard">
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/userProfile"
-        android:name="com.dlogan.android.tvmaze.listscreen.UserProfile"
+        android:name="com.dlogan.android.tvmaze.ui.listscreen.UserProfile"
         android:label="@string/title_detail"
         tools:layout="@layout/fragment_user_profile">
         <deepLink

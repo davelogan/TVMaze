@@ -29,5 +29,5 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context="com.dlogan.android.tvmaze.listscreen.Leaderboard"
+    tools:context=".ui.listscreen.Leaderboard"
     tools:listitem="@layout/list_view_item"/>

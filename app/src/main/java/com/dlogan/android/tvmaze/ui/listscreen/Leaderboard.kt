@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.listscreen
+package com.dlogan.android.tvmaze.ui.listscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater

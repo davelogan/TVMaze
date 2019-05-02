@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/about_me"
-        android:name="com.dlogan.android.tvmaze.aboutmescreen.AboutMe"
+        android:name="com.dlogan.android.tvmaze.ui.aboutmescreen.AboutMe"
         android:label="@string/title_about_me"
         tools:layout="@layout/fragment_about_me">
         <action

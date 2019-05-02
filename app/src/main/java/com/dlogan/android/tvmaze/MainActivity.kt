@@ -22,6 +22,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import com.dlogan.android.tvmaze.workers.ShowDatabaseLoaderWorker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**
@@ -37,6 +40,13 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState
+
+        tmpLoadDatabase()
+    }
+
+    fun tmpLoadDatabase() {
+        val request = OneTimeWorkRequestBuilder<ShowDatabaseLoaderWorker>().build()
+        WorkManager.getInstance(this).enqueue(request)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.homescreen
+package com.dlogan.android.tvmaze.ui.homescreen
 
 import android.os.Bundle
 import android.view.LayoutInflater

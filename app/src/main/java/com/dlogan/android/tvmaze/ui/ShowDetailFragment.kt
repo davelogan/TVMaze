@@ -80,10 +80,10 @@ class ShowDetailFragment : Fragment(), TVMazeApiServiceImpl.ResponseCallback<Sho
 
         detail_summary.text = Html.fromHtml(data.summary) //TODO make this spannable
         //detail_season_episode.text = String.format("Season: %d Episode: %d", data.)
-        detail_network.text = data.network?.name
-        detail_schedule.text = data.schedule?.days?.toString()
-        detail_status.text = data.status
-        detail_type.text = data.type
+        detail_network.text = String.format("Network: %s", data.network?.name ?: "")
+        detail_schedule.text = String.format("Schedule: %s", data.schedule?.days?.toString() ?: "")
+        detail_status.text = String.format("Status: %s", data.status ?: "")
+        detail_type.text = String.format("Type: %s", data.type ?: "")
 
         //set image
         if (data?.image?.original != null) {

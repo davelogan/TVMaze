@@ -106,7 +106,7 @@ class MyAdapter(private val myDataset: List<CastMemberDto>) :
             Glide.with(holder.item).load(R.drawable.baseline_person_black_36).into(holder.item.user_avatar_image)
         }
 
-        holder.item.snippet.text = String.format("Birthday: %s, Gender: %s", castMember.person.birthday, castMember.person.gender)
+        holder.item.snippet.text = String.format("Birthday: %s, Gender: %s", castMember.person.birthday ?: "Unknown", castMember.person.gender ?: "Unknown")
 
 
         //TODO goto profile screen

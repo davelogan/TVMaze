@@ -11,7 +11,7 @@ import retrofit2.Response
 class TVMazeApiServiceImpl {
 
     companion object {
-        private val TAG = TVMazeApiServiceImpl::class.qualifiedName
+        private const val TAG = "TVMazeApiServiceImpl"
 
         @Volatile
         private var INSTANCE: TVMazeApiServiceImpl? = null

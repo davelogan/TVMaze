@@ -31,5 +31,5 @@
         android:id="@+id/about_me"
         android:icon="@drawable/baseline_info_black_36"
         android:contentDescription="@string/cd_about_me"
-        android:title="@string/title_about_me" />
+        android:title="@string/title_about" />
 </menu>

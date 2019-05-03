@@ -47,8 +47,11 @@ interface ScheduledShowDao {
     @Query("SELECT count(id) FROM epg")
     fun count(): Long
 
-    @Query("SELECT * FROM epg ORDER BY startTime DESC")
-    fun allShows(): DataSource.Factory<Int, ScheduledShow>
+//    @Query("SELECT * FROM epg ORDER BY showName DESC")
+//    fun allShows(): DataSource.Factory<Int, ScheduledShow>
+
+    @Query("SELECT * FROM epg WHERE countryCode = :countryCode ORDER BY showName DESC")
+    fun allShows(countryCode: String): DataSource.Factory<Int, ScheduledShow>
 
     @Query("SELECT * FROM epg WHERE countryCode = :countryCode AND (:nowDate BETWEEN startTime AND endTime) ORDER BY startTime DESC")
     fun onNowShows(nowDate: Date, countryCode: String): DataSource.Factory<Int, ScheduledShow>

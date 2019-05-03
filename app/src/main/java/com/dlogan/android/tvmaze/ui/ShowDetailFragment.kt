@@ -78,7 +78,12 @@ class ShowDetailFragment : Fragment(), TVMazeApiServiceImpl.ResponseCallback<Sho
 
         detail_show_name.text = data.name
 
-        detail_summary.text = Html.fromHtml(data.summary) //TODO make this spannable
+        try {
+            //TODO make this spannable. Some text will crash this call due to some international chars
+            detail_summary.text = Html.fromHtml(data.summary)
+        }catch (ex: Exception) {
+            detail_summary.text = ""
+        }
         //detail_season_episode.text = String.format("Season: %d Episode: %d", data.)
         detail_network.text = String.format("Network: %s", data.network?.name ?: "")
         detail_schedule.text = String.format("Schedule: %s", data.schedule?.days?.toString() ?: "")
@@ -86,8 +91,8 @@ class ShowDetailFragment : Fragment(), TVMazeApiServiceImpl.ResponseCallback<Sho
         detail_type.text = String.format("Type: %s", data.type ?: "")
 
         //set image
-        if (data?.image?.original != null) {
-            Glide.with(this.context!!).load(data?.image.original).into(detail_show_image)
+        if (data.image?.original != null) {
+            Glide.with(this.context!!).load(data.image.original).into(detail_show_image)
         } else {
             Glide.with(this.context!!).load(R.drawable.baseline_theaters_black_36).into(detail_show_image)
         }

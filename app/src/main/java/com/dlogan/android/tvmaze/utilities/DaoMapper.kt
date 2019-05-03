@@ -22,7 +22,7 @@ object DaoMapper {
                 dto.embedded.show.getCountryCode(),
                 dto.embedded.show.id
         )
-        LogUtil.debug("DaoMapper", scheduledShow.toString())
+        //LogUtil.debug("DaoMapper", scheduledShow.toString())
         return scheduledShow
     }
 

@@ -21,6 +21,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.paging.Config
 import androidx.paging.toLiveData
 import com.dlogan.android.tvmaze.data.epg.EpgDatabase
+import com.dlogan.android.tvmaze.utilities.COUNTRY_CODE
 
 /**
  * A simple ViewModel that provides a paged all_shows shows.
@@ -32,7 +33,7 @@ class AllShowsViewModel(app: Application) : AndroidViewModel(app) {
      * We use -ktx Kotlin extension functions here, otherwise you would use LivePagedListBuilder(),
      * and PagedList.Config.Builder()
      */
-    val currentShows = dao.allShows().toLiveData(Config(
+    val currentShows = dao.allShows(COUNTRY_CODE).toLiveData(Config(
             pageSize = 30,
             enablePlaceholders = true,
             maxSize = 200))

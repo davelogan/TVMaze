@@ -2,6 +2,7 @@ package com.dlogan.android.tvmaze.proxy
 
 import android.util.Log
 import com.dlogan.android.tvmaze.proxy.dto.CastMemberDto
+import com.dlogan.android.tvmaze.proxy.dto.PersonDto
 import com.dlogan.android.tvmaze.proxy.dto.ShowDto
 import retrofit2.Call
 import retrofit2.Callback
@@ -72,6 +73,32 @@ class TVMazeApiServiceImpl {
     interface GetCastRequest: TVMazeRequest<List<CastMemberDto>> {
         override fun getResponseCallback(): ResponseCallback<List<CastMemberDto>>
         fun getShowId(): Long
+    }
+
+    //=======================================
+    // getPerson
+    //=======================================
+
+    fun getPerson(req: GetPersonRequest) {
+        TVMazeApiService.create().getPerson(req.getPersonId()).enqueue(object : Callback<PersonDto> {
+            override fun onResponse(call: Call<PersonDto>, response: Response<PersonDto>) {
+                if (response.isSuccessful) {
+                    req.getResponseCallback().onDataReceived(response.body()!!)
+                } else {
+                    Log.e(TAG, String.format("Get Person request with: %s", response.message()))
+                }
+            }
+
+            override fun onFailure(call: Call<PersonDto>, t: Throwable) {
+                Log.e(TAG, String.format("Get Person request failed with: %s", t.toString()))
+                req.getResponseCallback().onDataFailure(t.localizedMessage)
+            }
+        })
+    }
+
+    interface GetPersonRequest: TVMazeRequest<PersonDto> {
+        override fun getResponseCallback(): ResponseCallback<PersonDto>
+        fun getPersonId(): Long
     }
 
     //=======================================

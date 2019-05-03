@@ -70,8 +70,8 @@
         android:label="@string/title_person_profile"
         tools:layout="@layout/fragment_user_profile">
         <argument
-            android:name="userName"
-            app:argType="string"/>
+            android:name="CAST_MEMBER_ID_KEY"
+            app:argType="long"/>
     </fragment>
 
 </navigation>

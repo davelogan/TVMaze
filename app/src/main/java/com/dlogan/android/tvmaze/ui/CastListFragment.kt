@@ -15,6 +15,7 @@ import com.dlogan.android.tvmaze.R
 import com.dlogan.android.tvmaze.proxy.TVMazeApiServiceImpl
 import com.dlogan.android.tvmaze.proxy.dto.CastMemberDto
 import com.dlogan.android.tvmaze.proxy.dto.ShowDto
+import com.dlogan.android.tvmaze.ui.CastListFragment.Companion.CAST_MEMBER_ID_KEY
 import kotlinx.android.synthetic.main.fragment_show_detail.*
 import kotlinx.android.synthetic.main.list_view_item.view.*
 
@@ -65,6 +66,10 @@ class CastListFragment: Fragment(), TVMazeApiServiceImpl.ResponseCallback<List<C
     override fun onDataFailure(error: String?) {
         //TODO
     }
+
+    companion object {
+        const val CAST_MEMBER_ID_KEY = "CAST_MEMBER_ID_KEY"
+    }
 }
 
 class MyAdapter(private val myDataset: List<CastMemberDto>) :
@@ -109,13 +114,13 @@ class MyAdapter(private val myDataset: List<CastMemberDto>) :
 
 
         //TODO goto profile screen
-//        holder.item.setOnClickListener {
-//            val bundle = bundleOf("userName" to myDataset[position])
-//
-//            Navigation.findNavController(holder.item).navigate(
-//                    R.id.action_castandcrew_to_profile,
-//                    bundle)
-//        }
+        holder.item.setOnClickListener {
+            val bundle = bundleOf(CAST_MEMBER_ID_KEY to castMember.person.id)
+
+            Navigation.findNavController(holder.item).navigate(
+                    R.id.action_castandcrew_to_profile,
+                    bundle)
+        }
 
     }
 

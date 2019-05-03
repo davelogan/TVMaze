@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/castAndCrew"
-        android:name="com.dlogan.android.tvmaze.ui.CaseAndCrewFragment"
+        android:name="com.dlogan.android.tvmaze.ui.CastListFragment"
         android:label="@string/title_cast_and_crew"
         tools:layout="@layout/fragment_cast_and_crew">
         <argument

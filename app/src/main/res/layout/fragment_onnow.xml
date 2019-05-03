@@ -29,6 +29,6 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context="com.dlogan.android.tvmaze.ui.onnowscreen.OnNowFragment"
+    tools:context="com.dlogan.android.tvmaze.ui.OnNowFragment"
     tools:listitem="@layout/show_list_item"/>
 

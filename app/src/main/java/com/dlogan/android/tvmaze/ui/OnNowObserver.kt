@@ -1,4 +1,4 @@
-package com.dlogan.android.tvmaze.ui.onnowscreen
+package com.dlogan.android.tvmaze.ui
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

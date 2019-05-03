@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.ui.onnowscreen
+package com.dlogan.android.tvmaze.ui
 
 import android.os.Bundle
 import android.text.Html
@@ -26,7 +26,7 @@ import com.bumptech.glide.Glide
 import com.dlogan.android.tvmaze.R
 import com.dlogan.android.tvmaze.proxy.TVMazeApiServiceImpl
 import com.dlogan.android.tvmaze.proxy.dto.ShowDto
-import com.dlogan.android.tvmaze.ui.onnowscreen.OnNowFragment.Companion.SHOW_ID_KEY
+import com.dlogan.android.tvmaze.ui.ShowsFragment.Companion.SHOW_ID_KEY
 import kotlinx.android.synthetic.main.fragment_show_detail.*
 
 

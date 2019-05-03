@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.ui.aboutmescreen
+package com.dlogan.android.tvmaze.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

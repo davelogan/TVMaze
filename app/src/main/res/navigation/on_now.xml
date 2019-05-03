@@ -19,22 +19,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home"
-    app:startDestination="@+id/titleScreen">
+    android:id="@+id/on_now"
+    app:startDestination="@+id/on_now_screen">
 
     <fragment
-        android:id="@+id/titleScreen"
-        android:name="com.dlogan.android.tvmaze.ui.onnowscreen.OnNowFragment"
+        android:id="@+id/on_now_screen"
+        android:name="com.dlogan.android.tvmaze.ui.OnNowFragment"
         android:label="@string/title_on_now"
         tools:layout="@layout/fragment_onnow">
         <action
-            android:id="@+id/action_showlist_to_ushow_detail"
+            android:id="@+id/action_showlist_to_show_detail"
             app:destination="@id/showDetail"/>
     </fragment>
     <fragment
         android:id="@+id/showDetail"
-        android:name="com.dlogan.android.tvmaze.ui.onnowscreen.ShowDetailFragment"
-        android:label="@string/title_detail"
+        android:name="com.dlogan.android.tvmaze.ui.ShowDetailFragment"
+        android:label="@string/title_show_detail"
         tools:layout="@layout/fragment_show_detail">
         <argument
             android:name="SCHEDULE_ID_KEY"

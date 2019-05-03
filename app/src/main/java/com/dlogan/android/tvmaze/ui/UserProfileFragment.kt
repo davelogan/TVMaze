@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.ui.listscreen
+package com.dlogan.android.tvmaze.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,7 +23,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.dlogan.android.tvmaze.R
-import com.dlogan.android.tvmaze.ui.listscreen.MyAdapter.Companion.USERNAME_KEY
 
 
 /**
@@ -37,8 +36,8 @@ class UserProfileFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_user_profile, container, false)
 
-        val name = arguments?.getString(USERNAME_KEY) ?: "Ali Connors"
-        view.findViewById<TextView>(R.id.profile_user_name).text = name
+        //val name = arguments?.getString(USERNAME_KEY) ?: "Ali Connors"
+        //view.findViewById<TextView>(R.id.profile_user_name).text = name
         return view
     }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.ui.onnowscreen
+package com.dlogan.android.tvmaze.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -25,9 +25,9 @@ import com.dlogan.android.tvmaze.utilities.COUNTRY_CODE
 import java.util.*
 
 /**
- * A simple ViewModel that provides a paged list shows.
+ * A simple ViewModel that provides a paged all_shows shows.
  */
-class ShowsViewModel(app: Application) : AndroidViewModel(app) {
+class OnNowShowsViewModel(app: Application) : AndroidViewModel(app) {
     val dao = EpgDatabase.getDatabase(app).scheduledShowDao()
 
     /**

@@ -19,9 +19,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/leaderboard_list"
+    android:id="@+id/show_list"
     android:name="androidx.navigation.fragment.NavHostFragment"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -29,5 +28,5 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".ui.listscreen.Leaderboard"
-    tools:listitem="@layout/list_view_item"/>
+    tools:context="com.dlogan.android.tvmaze.ui.AllShowsFragment"
+    tools:listitem="@layout/show_list_item"/>

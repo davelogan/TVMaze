@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.ui.onnowscreen
+package com.dlogan.android.tvmaze.ui
 
 import java.util.concurrent.Executors
 

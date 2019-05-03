@@ -19,29 +19,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
-    app:startDestination="@+id/leaderboard">
+    android:id="@+id/all_shows"
+    app:startDestination="@+id/all_shows_screen">
 
     <fragment
-            android:id="@+id/leaderboard"
-            android:name="com.dlogan.android.tvmaze.ui.listscreen.Leaderboard"
-            android:label="@string/title_list"
-            tools:layout="@layout/fragment_leaderboard">
+        android:id="@+id/all_shows_screen"
+        android:name="com.dlogan.android.tvmaze.ui.AllShowsFragment"
+        android:label="@string/title_all_shows"
+        tools:layout="@layout/fragment_all_shows">
         <action
-            android:id="@+id/action_leaderboard_to_userProfile"
-            app:destination="@id/userProfile"/>
+            android:id="@+id/action_showlist_to_show_detail"
+            app:destination="@id/showDetail"/>
     </fragment>
     <fragment
-        android:id="@+id/userProfile"
-        android:name="com.dlogan.android.tvmaze.ui.listscreen.UserProfileFragment"
-        android:label="@string/title_detail"
-        tools:layout="@layout/fragment_user_profile">
-        <deepLink
-            android:id="@+id/deepLink"
-            app:uri="www.example.com/user/{userName}"
-            android:autoVerify="true"/>
+        android:id="@+id/showDetail"
+        android:name="com.dlogan.android.tvmaze.ui.ShowDetailFragment"
+        android:label="@string/title_show_detail"
+        tools:layout="@layout/fragment_show_detail">
         <argument
-            android:name="userName"
-            app:argType="string"/>
+            android:name="SCHEDULE_ID_KEY"
+            app:argType="long"/>
+        <argument
+            android:name="SHOW_ID_KEY"
+            app:argType="long"/>
+
     </fragment>
+
 </navigation>

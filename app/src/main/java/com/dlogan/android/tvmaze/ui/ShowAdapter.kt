@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.ui.onnowscreen
+package com.dlogan.android.tvmaze.ui
 
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -26,7 +26,7 @@ import com.dlogan.android.tvmaze.data.epg.ScheduledShow
  * <p>
  * PagedListAdapter is a RecyclerView.Adapter base class which can present the content of PagedLists
  * in a RecyclerView. It requests new pages as the user scrolls, and handles new PagedLists by
- * computing list differences on a background thread, and dispatching minimal, efficient updates to
+ * computing all_shows differences on a background thread, and dispatching minimal, efficient updates to
  * the RecyclerView to ensure minimal UI thread work.
  * <p>
  * If you want to use your own Adapter base class, try using a PagedListAdapterHelper inside your

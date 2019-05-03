@@ -41,11 +41,12 @@
     <string name="title_on_now">On Now</string>
     <string name="title_register">Register</string>
     <string name="title_registered">Registered</string>
-    <string name="title_list">Leaderboard</string>
-    <string name="title_detail">Profile</string>
+    <string name="title_all_shows">All Shows</string>
+    <string name="title_show_detail">Show Detail</string>
     <string name="title_about_me">About</string>
+    <string name="title_show_profile">Show Detail</string>
     <string name="cd_on_now">On Now</string>
-    <string name="cd_list">List</string>
+    <string name="cd_all_shows">All Shows</string>
     <string name="cd_about_me">About Me</string>
 
     <string name="sub_menu_refresh">Refresh</string>

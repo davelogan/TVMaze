@@ -21,8 +21,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.paging.Config
 import androidx.paging.toLiveData
 import com.dlogan.android.tvmaze.data.epg.EpgDatabase
-import com.dlogan.android.tvmaze.utilities.COUNTRY_CODE
-import java.util.*
 
 /**
  * A simple ViewModel that provides a paged all_shows shows.

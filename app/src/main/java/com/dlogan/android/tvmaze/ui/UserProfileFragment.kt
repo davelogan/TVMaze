@@ -20,18 +20,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.dlogan.android.tvmaze.R
 import com.dlogan.android.tvmaze.proxy.TVMazeApiServiceImpl
-import com.dlogan.android.tvmaze.proxy.dto.CastMemberDto
 import com.dlogan.android.tvmaze.proxy.dto.PersonDto
-import com.dlogan.android.tvmaze.proxy.dto.ShowDto
 import kotlinx.android.synthetic.main.fragment_user_profile.*
-import kotlinx.android.synthetic.main.list_view_item.view.*
 import kotlinx.android.synthetic.main.user_card.*
-import java.io.Serializable
 
 
 /**
@@ -87,9 +82,9 @@ class UserProfileFragment : Fragment(), TVMazeApiServiceImpl.ResponseCallback<Pe
             Glide.with(this.context!!).load(R.drawable.baseline_theaters_black_36).into(profile_pic)
         }
 
-        snippet1.text = String.format("Birthday: %s", data.birthday)
-        snippet2.text = String.format("Deathday: %s", data.deathday)
-        snippet3.text = String.format("Gender: %s", data.gender)
+        snippet1.text = String.format("Birthday: %s", data.birthday ?: "Unknown")
+        snippet2.text = String.format("Deathday: %s", data.deathday ?: "Unknown")
+        snippet3.text = String.format("Gender: %s", data.gender ?: "Unknown")
         snippet4.text = data.country?.name
     }
 

@@ -6,8 +6,8 @@ data class PersonDto(
         @SerializedName("id") val id: Long,
         @SerializedName("name") val name: String,
         @SerializedName("image") val image: ImageDto?,
-        @SerializedName("birthday") val birthday: String?,
-        @SerializedName("deathday") val deathday: String?,
-        @SerializedName("gender") val gender: String?,
+        @SerializedName("birthday") val birthday: String? = "Unknown",
+        @SerializedName("deathday") val deathday: String? = "Unknown",
+        @SerializedName("gender") val gender: String? = "Unknown",
         @SerializedName("country") val country: CountryDto?
         )

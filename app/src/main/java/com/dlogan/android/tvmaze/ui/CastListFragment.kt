@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -14,9 +12,7 @@ import com.bumptech.glide.Glide
 import com.dlogan.android.tvmaze.R
 import com.dlogan.android.tvmaze.proxy.TVMazeApiServiceImpl
 import com.dlogan.android.tvmaze.proxy.dto.CastMemberDto
-import com.dlogan.android.tvmaze.proxy.dto.ShowDto
 import com.dlogan.android.tvmaze.ui.CastListFragment.Companion.CAST_MEMBER_ID_KEY
-import kotlinx.android.synthetic.main.fragment_show_detail.*
 import kotlinx.android.synthetic.main.list_view_item.view.*
 
 class CastListFragment: Fragment(), TVMazeApiServiceImpl.ResponseCallback<List<CastMemberDto>> {

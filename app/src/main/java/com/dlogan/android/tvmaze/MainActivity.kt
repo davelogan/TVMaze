@@ -22,7 +22,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.work.*
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.dlogan.android.tvmaze.workers.ShowDatabaseLoaderWorker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

@@ -23,6 +23,8 @@ const val DATABASE_NAME = "epg-db"
 
 const val MAZE_API_URL_BASE = "http://api.tvmaze.com"
 
+const val COUNTRY_CODE = "US"
 
 const val PREFS_FILENAME = "com.dlogan.android.tvmaze.prefs"
 const val LAST_SYNC_TIME = "last_sync_time"
+

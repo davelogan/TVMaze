@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.data
+package com.dlogan.android.tvmaze.data.epg
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.dlogan.android.tvmaze.data.Converters
 import com.dlogan.android.tvmaze.utilities.DATABASE_NAME
 
 /**

@@ -1,8 +1,6 @@
 package com.dlogan.android.tvmaze.utilities
 
 import java.text.SimpleDateFormat
-import java.time.OffsetDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class DateTimeUtils {

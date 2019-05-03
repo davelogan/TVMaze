@@ -1,9 +1,9 @@
 package com.dlogan.android.tvmaze.data
 
-import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
+import com.dlogan.android.tvmaze.data.epg.EpgDatabase
+import com.dlogan.android.tvmaze.data.epg.ScheduledShow
 import junit.framework.TestCase.assertEquals
-import org.junit.Before
 import org.junit.Test
 
 class EpgDatabaseTest{
@@ -30,7 +30,7 @@ class EpgDatabaseTest{
 
     }
 
-    private fun createDummyScheduleItem(id: Long, showId: Long) :ScheduledShow  {
+    private fun createDummyScheduleItem(id: Long, showId: Long) : ScheduledShow {
         return ScheduledShow(id, null, null, null, null, null, null, null, null, null, null, showId)
     }
 

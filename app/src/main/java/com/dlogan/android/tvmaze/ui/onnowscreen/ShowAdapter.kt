@@ -16,14 +16,13 @@
 
 package com.dlogan.android.tvmaze.ui.onnowscreen
 
-import android.content.Context
+import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import android.view.ViewGroup
-import com.dlogan.android.tvmaze.data.ScheduledShow
+import com.dlogan.android.tvmaze.data.epg.ScheduledShow
 
 /**
- * A simple PagedListAdapter that binds Cheese items into CardViews.
+ * A simple PagedListAdapter that binds schedule items into CardViews.
  * <p>
  * PagedListAdapter is a RecyclerView.Adapter base class which can present the content of PagedLists
  * in a RecyclerView. It requests new pages as the user scrolls, and handles new PagedLists by
@@ -48,16 +47,7 @@ class ShowAdapter: PagedListAdapter<ScheduledShow, ShowViewHolder>(diffCallback)
     }
 
     companion object {
-        /**
-         * This diff callback informs the PagedListAdapter how to compute list differences when new
-         * PagedLists arrive.
-         * <p>
-         * When you add a Cheese with the 'Add' button, the PagedListAdapter uses diffCallback to
-         * detect there's only a single item difference from before, so it only needs to animate and
-         * rebind a single view.
-         *
-         * @see android.support.v7.util.DiffUtil
-         */
+
         private val diffCallback = object : DiffUtil.ItemCallback<ScheduledShow>() {
             override fun areItemsTheSame(oldItem: ScheduledShow, newItem: ScheduledShow): Boolean =
                     oldItem.id == newItem.id

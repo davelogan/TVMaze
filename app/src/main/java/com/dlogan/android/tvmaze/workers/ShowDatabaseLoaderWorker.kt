@@ -3,8 +3,8 @@ package com.dlogan.android.tvmaze.workers
 import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.dlogan.android.tvmaze.data.EpgDatabase
-import com.dlogan.android.tvmaze.data.ScheduledShow
+import com.dlogan.android.tvmaze.data.epg.EpgDatabase
+import com.dlogan.android.tvmaze.data.epg.ScheduledShow
 import com.dlogan.android.tvmaze.proxy.TVMazeApiService
 import com.dlogan.android.tvmaze.proxy.dto.ScheduleItemDto
 import com.dlogan.android.tvmaze.utilities.DaoMapper

@@ -1,5 +1,6 @@
 package com.dlogan.android.tvmaze.proxy.dto
 
+import com.dlogan.android.tvmaze.utilities.COUNTRY_CODE
 import com.google.gson.annotations.SerializedName
 
 data class ShowDto(
@@ -32,11 +33,12 @@ data class ShowDto(
             return networkCountryCode
         }
 
-        val webChannelCountryCode = webChannel?.country?.code
-        if (webChannelCountryCode != null) {
-            return webChannelCountryCode
-        }
+//        val webChannelCountryCode = webChannel?.country?.code
+//        if (webChannelCountryCode != null) {
+//            return webChannelCountryCode
+//        }
 
-        return ""
+        //TODO not 'really' safe to assume, but I need to know more about the data. A lot of web channels have no country code (like youtube and amazon) so I will assume they are available in the US
+        return COUNTRY_CODE
     }
 }

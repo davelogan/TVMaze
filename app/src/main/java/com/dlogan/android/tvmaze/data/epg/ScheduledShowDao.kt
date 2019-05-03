@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.data
+package com.dlogan.android.tvmaze.data.epg
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.paging.DataSource
 import java.util.*
 
 /**
@@ -50,6 +50,9 @@ interface ScheduledShowDao {
     @Query("SELECT * FROM epg ORDER BY startTime DESC")
     fun allShows(): DataSource.Factory<Int, ScheduledShow>
 
-    @Query("SELECT * FROM epg WHERE :nowDate BETWEEN startTime AND endTime ORDER BY startTime DESC")
-    fun onNowShows(nowDate: Date): DataSource.Factory<Int, ScheduledShow>
+    @Query("SELECT * FROM epg WHERE countryCode = :countryCode AND (:nowDate BETWEEN startTime AND endTime) ORDER BY startTime DESC")
+    fun onNowShows(nowDate: Date, countryCode: String): DataSource.Factory<Int, ScheduledShow>
+
+    //@Query("SELECT * FROM epg WHERE :nowDate BETWEEN startTime AND endTime ORDER BY startTime DESC")
+    //fun onNowShows(nowDate: Date): DataSource.Factory<Int, ScheduledShow>
 }

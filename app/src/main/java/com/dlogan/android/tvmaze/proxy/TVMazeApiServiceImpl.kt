@@ -1,6 +1,5 @@
 package com.dlogan.android.tvmaze.proxy
 
-import android.content.Context
 import android.util.Log
 import com.dlogan.android.tvmaze.proxy.dto.ShowDto
 import retrofit2.Call

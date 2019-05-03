@@ -1,6 +1,6 @@
 package com.dlogan.android.tvmaze.utilities
 
-import com.dlogan.android.tvmaze.data.ScheduledShow
+import com.dlogan.android.tvmaze.data.epg.ScheduledShow
 import com.dlogan.android.tvmaze.proxy.dto.ScheduleItemDto
 
 object DaoMapper {
@@ -22,7 +22,7 @@ object DaoMapper {
                 dto.embedded.show.getCountryCode(),
                 dto.embedded.show.id
         )
-        //LogUtil.debug("DaoMapper", scheduledShow.toString())
+        LogUtil.debug("DaoMapper", scheduledShow.toString())
         return scheduledShow
     }
 

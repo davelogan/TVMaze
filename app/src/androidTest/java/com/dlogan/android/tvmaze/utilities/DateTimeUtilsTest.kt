@@ -1,8 +1,6 @@
 package com.dlogan.android.tvmaze.utilities
 
-import android.text.format.DateUtils
 import org.junit.Test
-import java.time.OffsetDateTime
 
 class DateTimeUtilsTest
 {

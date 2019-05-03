@@ -20,7 +20,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.paging.Config
 import androidx.paging.toLiveData
-import com.dlogan.android.tvmaze.data.EpgDatabase
+import com.dlogan.android.tvmaze.data.epg.EpgDatabase
+import com.dlogan.android.tvmaze.utilities.COUNTRY_CODE
 import java.util.*
 
 /**
@@ -33,7 +34,7 @@ class ShowsViewModel(app: Application) : AndroidViewModel(app) {
      * We use -ktx Kotlin extension functions here, otherwise you would use LivePagedListBuilder(),
      * and PagedList.Config.Builder()
      */
-    val currentShows = dao.onNowShows(Date()).toLiveData(Config(
+    val currentShows = dao.onNowShows(Date(), COUNTRY_CODE).toLiveData(Config(
             pageSize = 30,
             enablePlaceholders = true,
             maxSize = 200))

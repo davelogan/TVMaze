@@ -28,6 +28,7 @@ import com.bumptech.glide.Glide
 import com.dlogan.android.tvmaze.R
 import com.dlogan.android.tvmaze.data.ScheduledShow
 import com.dlogan.android.tvmaze.ui.onnowscreen.OnNowFragment.Companion.SCHEDULE_ID_KEY
+import com.dlogan.android.tvmaze.ui.onnowscreen.OnNowFragment.Companion.SHOW_ID_KEY
 
 
 class ShowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -62,7 +63,7 @@ class ShowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         }
 
         itemView.setOnClickListener {
-                val bundle = bundleOf(SCHEDULE_ID_KEY to this.show?.id)
+                val bundle = bundleOf(SCHEDULE_ID_KEY to this.show?.id, SHOW_ID_KEY to this.show?.showId)
             itemView.findNavController().navigate(
                         R.id.action_showlist_to_ushow_detail,
                         bundle)

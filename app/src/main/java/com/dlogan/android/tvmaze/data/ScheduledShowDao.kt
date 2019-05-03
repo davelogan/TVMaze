@@ -33,7 +33,7 @@ interface ScheduledShowDao {
     fun getShows(): LiveData<List<ScheduledShow>>
 
     @Query("SELECT * FROM epg WHERE id = :id")
-    fun getShow(id: Long): LiveData<ScheduledShow>
+    fun getShow(id: Long): ScheduledShow
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(scheduledShows: List<ScheduledShow>)

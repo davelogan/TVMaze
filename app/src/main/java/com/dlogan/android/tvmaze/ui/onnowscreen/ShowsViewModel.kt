@@ -26,7 +26,7 @@ import java.util.*
 /**
  * A simple ViewModel that provides a paged list shows.
  */
-class ShowViewModel(app: Application) : AndroidViewModel(app) {
+class ShowsViewModel(app: Application) : AndroidViewModel(app) {
     val dao = EpgDatabase.getDatabase(app).scheduledShowDao()
 
     /**
@@ -38,5 +38,8 @@ class ShowViewModel(app: Application) : AndroidViewModel(app) {
             enablePlaceholders = true,
             maxSize = 200))
 
+    fun refresh() {
 
+        //itemDataSourceFactory.getItemLiveDataSource().getValue().invalidate()
+    }
 }

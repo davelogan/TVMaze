@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/titleScreen"
         android:name="com.dlogan.android.tvmaze.ui.onnowscreen.OnNowFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_on_now"
         tools:layout="@layout/fragment_onnow">
         <action
             android:id="@+id/action_showlist_to_ushow_detail"
@@ -39,5 +39,10 @@
         <argument
             android:name="SCHEDULE_ID_KEY"
             app:argType="long"/>
+        <argument
+            android:name="SHOW_ID_KEY"
+            app:argType="long"/>
+
     </fragment>
+
 </navigation>

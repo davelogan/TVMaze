@@ -30,7 +30,7 @@ import com.dlogan.android.tvmaze.R
 class OnNowFragment : Fragment() {
 
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
-        ViewModelProviders.of(this).get(ShowViewModel::class.java)
+        ViewModelProviders.of(this).get(ShowsViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -55,6 +55,7 @@ class OnNowFragment : Fragment() {
 
     companion object {
         const val SCHEDULE_ID_KEY = "SCHEDULE_ID_KEY"
+        const val SHOW_ID_KEY = "SHOW_ID_KEY"
     }
 
 }

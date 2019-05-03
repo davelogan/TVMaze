@@ -1,12 +1,14 @@
 package com.dlogan.android.tvmaze.proxy
 
 import com.dlogan.android.tvmaze.proxy.dto.ScheduleItemDto
+import com.dlogan.android.tvmaze.proxy.dto.ShowDto
 import com.dlogan.android.tvmaze.utilities.MAZE_API_URL_BASE
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface TVMazeApiService {
 
@@ -29,4 +31,6 @@ interface TVMazeApiService {
     @GET("/schedule/full")
     fun getShows(): Call<List<ScheduleItemDto>>
 
+    @GET("/shows/{showId}")
+    fun getShow(@Path(value = "showId", encoded = true) showId: Long): Call<ShowDto>
 }

@@ -14,16 +14,20 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.aboutmescreen.AboutMeFragment">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
     android:id="@+id/title_constraint"
     android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.aboutmescreen.AboutMeFragment"
+    android:layout_height="wrap_content"
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
@@ -85,3 +89,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

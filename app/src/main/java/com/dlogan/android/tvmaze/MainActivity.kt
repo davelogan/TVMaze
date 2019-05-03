@@ -25,7 +25,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.work.*
 import com.dlogan.android.tvmaze.workers.ShowDatabaseLoaderWorker
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.util.concurrent.TimeUnit
 
 /**
  * An activity that inflates a layout that has a [BottomNavigationView].
@@ -84,7 +83,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNavigationBar() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
 
-        val navGraphIds = listOf(R.navigation.home, R.navigation.list, R.navigation.about_me)
+        val navGraphIds = listOf(R.navigation.on_now, R.navigation.list, R.navigation.about_me)
 
         // Setup the bottom navigation view with a list_navigation of navigation graphs
         val controller = bottomNavigationView.setupWithNavController(

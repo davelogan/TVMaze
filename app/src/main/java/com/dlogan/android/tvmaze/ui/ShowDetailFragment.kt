@@ -21,13 +21,16 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.dlogan.android.tvmaze.R
 import com.dlogan.android.tvmaze.proxy.TVMazeApiServiceImpl
 import com.dlogan.android.tvmaze.proxy.dto.ShowDto
 import com.dlogan.android.tvmaze.ui.ShowsFragment.Companion.SHOW_ID_KEY
 import kotlinx.android.synthetic.main.fragment_show_detail.*
+import kotlinx.android.synthetic.main.fragment_show_detail.view.*
 
 
 /**
@@ -46,6 +49,15 @@ class ShowDetailFragment : Fragment(), TVMazeApiServiceImpl.ResponseCallback<Sho
         TVMazeApiServiceImpl.getInstance().getShow(GetShowRequest(showId!!, this))
 
         retainInstance = true
+
+
+        view.cast_and_crew_btn.setOnClickListener {
+            val bundle = bundleOf(SHOW_ID_KEY to showId)
+
+            Navigation.findNavController(view).navigate(
+                    R.id.action_user_detail_to_cast_list,
+                    bundle)
+        }
 
         return view
     }

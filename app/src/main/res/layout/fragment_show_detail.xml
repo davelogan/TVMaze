@@ -44,7 +44,6 @@
             android:background="@android:color/background_light"
             android:contentDescription="@string/show_image" />
 
-
         <TextView
             android:id="@+id/detail_show_name"
             android:layout_width="0dp"
@@ -56,6 +55,20 @@
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
             android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/cast_and_crew_btn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_button"
+            android:contentDescription="@string/cast_and_crew"
+            android:text="@string/cast_and_crew"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView

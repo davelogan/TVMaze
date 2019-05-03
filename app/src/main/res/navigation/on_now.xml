@@ -42,7 +42,35 @@
         <argument
             android:name="SHOW_ID_KEY"
             app:argType="long"/>
+        <action
+            android:id="@+id/action_user_detail_to_cast_list"
+            app:destination="@id/castAndCrew"/>
+    </fragment>
 
+    <fragment
+        android:id="@+id/castAndCrew"
+        android:name="com.dlogan.android.tvmaze.ui.CaseAndCrewFragment"
+        android:label="@string/title_cast_and_crew"
+        tools:layout="@layout/fragment_cast_and_crew">
+        <argument
+            android:name="SCHEDULE_ID_KEY"
+            app:argType="long"/>
+        <argument
+            android:name="SHOW_ID_KEY"
+            app:argType="long"/>
+        <action
+            android:id="@+id/action_castandcrew_to_profile"
+            app:destination="@id/userProfile"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/userProfile"
+        android:name="com.dlogan.android.tvmaze.ui.UserProfileFragment"
+        android:label="@string/title_person_profile"
+        tools:layout="@layout/fragment_user_profile">
+        <argument
+            android:name="userName"
+            app:argType="string"/>
     </fragment>
 
 </navigation>

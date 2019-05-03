@@ -43,8 +43,15 @@
     <string name="title_registered">Registered</string>
     <string name="title_all_shows">All Shows</string>
     <string name="title_show_detail">Show Detail</string>
+    <string name="title_cast_and_crew">Cast and Crew</string>
     <string name="title_about_me">About</string>
     <string name="title_show_profile">Show Detail</string>
+    <string name="title_person_profile">Profile</string>
+
+    <string name="cast_and_crew">Cast and Crew</string>
+
+
+
     <string name="cd_on_now">On Now</string>
     <string name="cd_all_shows">All Shows</string>
     <string name="cd_about_me">About Me</string>

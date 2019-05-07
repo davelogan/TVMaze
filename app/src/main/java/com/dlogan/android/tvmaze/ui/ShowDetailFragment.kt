@@ -21,6 +21,7 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -76,30 +77,37 @@ class ShowDetailFragment : Fragment(), TVMazeApiServiceImpl.ResponseCallback<Sho
 
     override fun onDataReceived(data: ShowDto) {
 
-        detail_show_name.text = data.name
+        //synthetic properties outside of onViewCreated() is sometimes null pointer
+        if (this.isDetached || this.context == null || data == null) {
+            return
+        }
+
+        detail_show_name?.text = data.name
 
         try {
             //TODO make this spannable. Some text will crash this call due to some international chars
-            detail_summary.text = Html.fromHtml(data.summary)
+            detail_summary?.text = Html.fromHtml(data.summary)
         }catch (ex: Exception) {
-            detail_summary.text = ""
+            detail_summary?.text = ""
         }
 
         when {
-            data.network?.name!=null -> detail_network.text = String.format("Network: %s", data.network.name)
-            data.webChannel?.name!=null -> detail_network.text = String.format("Network: %s", data.webChannel.name )
-            else -> detail_network.text = String.format("Web Channel: %s", data.webChannel?.name)
+            data.network?.name!=null -> detail_network?.text = String.format("Network: %s", data.network.name)
+            data.webChannel?.name!=null -> detail_network?.text = String.format("Network: %s", data.webChannel.name )
+            else -> detail_network?.text = String.format("Web Channel: %s", data.webChannel?.name)
         }
-        detail_schedule.text = String.format("Schedule: %s", data.schedule?.days?.toString() ?: "")
-        detail_status.text = String.format("Status: %s", data.status ?: "")
-        detail_type.text = String.format("Type: %s", data.type ?: "")
+        detail_schedule?.text = String.format("Schedule: %s", data.schedule?.days?.toString() ?: "")
+        detail_status?.text = String.format("Status: %s", data.status ?: "")
+        detail_type?.text = String.format("Type: %s", data.type ?: "")
 
 
-        //set image
-        if (data.image?.original != null) {
-            Glide.with(this.context!!).load(data.image.original).into(detail_show_image)
-        } else {
-            Glide.with(this.context!!).load(R.drawable.baseline_theaters_black_36).into(detail_show_image)
+        if (detail_show_image!=null) {
+            //set image
+            if (data.image?.original != null) {
+                Glide.with(this.context!!).load(data.image.original).into(detail_show_image)
+            } else {
+                Glide.with(this.context!!).load(R.drawable.baseline_theaters_black_36).into(detail_show_image)
+            }
         }
 
 

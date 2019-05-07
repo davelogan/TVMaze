@@ -47,16 +47,22 @@ class CastListFragment: Fragment(), TVMazeApiServiceImpl.ResponseCallback<List<C
     }
 
     override fun onDataReceived(data: List<CastMemberDto>) {
+        if (this.isDetached || this.context == null || data == null) {
+            return
+        }
         viewAdapter = MyAdapter(data)
 
-        recyclerView = view!!.findViewById<RecyclerView>(R.id.cast_and_crew_list).apply {
-            // use this setting to improve performance if you know that changes
-            // in content do not change the layout size of the RecyclerView
-            setHasFixedSize(true)
 
-            // specify an viewAdapter (see also next example)
-            adapter = viewAdapter
+        if (view!=null) {
+            recyclerView = view!!.findViewById<RecyclerView>(R.id.cast_and_crew_list).apply {
+                // use this setting to improve performance if you know that changes
+                // in content do not change the layout size of the RecyclerView
+                setHasFixedSize(true)
 
+                // specify an viewAdapter (see also next example)
+                adapter = viewAdapter
+
+            }
         }
 
         if (data.isEmpty()) {

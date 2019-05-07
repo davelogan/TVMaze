@@ -19,8 +19,6 @@ package com.dlogan.android.tvmaze.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -29,13 +27,12 @@ import com.dlogan.android.tvmaze.R
 import com.dlogan.android.tvmaze.data.epg.ScheduledShow
 import com.dlogan.android.tvmaze.ui.ShowsFragment.Companion.SCHEDULE_ID_KEY
 import com.dlogan.android.tvmaze.ui.ShowsFragment.Companion.SHOW_ID_KEY
+import com.dlogan.android.tvmaze.utilities.DateTimeUtils.Companion.displayDateFormat
+import kotlinx.android.synthetic.main.show_list_item.view.*
 
 
 class ShowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    private val showNameView = itemView.findViewById<TextView>(R.id.show_name)
-    private val showImageView = itemView.findViewById<ImageView>(R.id.show_image)
-    private val episodeNameView = itemView.findViewById<TextView>(R.id.episode_name)
 
     private var show : ScheduledShow? = null
 
@@ -53,13 +50,19 @@ class ShowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
      */
     fun bindTo(show : ScheduledShow?) {
         this.show = show
-        showNameView.text = show?.showName
-        episodeNameView.text = show?.episodeName
+        itemView.show_name.text = show?.showName
+        itemView.episode_name.text = show?.episodeName
 
         if (show?.imageMedium != null) {
-            Glide.with(showImageView).load(show.imageMedium).into(showImageView)
+            Glide.with(itemView).load(show.imageMedium).into(itemView.show_image)
         } else {
-            Glide.with(showImageView).load(R.drawable.baseline_theaters_black_24).into(showImageView)
+            Glide.with(itemView).load(R.drawable.baseline_theaters_black_24).into(itemView.show_image)
+        }
+
+        try {
+            itemView.show_time.text = String.format("Start Time: %s", displayDateFormat.format(show?.startTime))
+        }catch (ex: Exception) {
+            itemView.show_time.text = ""
         }
 
         itemView.setOnClickListener {

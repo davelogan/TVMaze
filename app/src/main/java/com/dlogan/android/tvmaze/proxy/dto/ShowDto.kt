@@ -29,7 +29,7 @@ data class ShowDto(
     //TODO refactor this to use Kotlin correctly
     fun getCountryCode(): String? {
         val networkCountryCode = network?.country?.code
-        if (networkCountryCode != null) {
+        if (networkCountryCode != null && !networkCountryCode.isBlank()) {
             return networkCountryCode
         }
 

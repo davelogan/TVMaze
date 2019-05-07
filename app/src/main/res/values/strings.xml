@@ -50,6 +50,8 @@
     <string name="cd_about_me">About Me</string>
 
     <string name="sub_menu_refresh">Refresh</string>
+    <string name="text_no_crew_msg">Crew List not available for this show</string>
+    <string name="text_no_onnow_shows_msg">No shows are currently playing</string>
 
 
 </resources>

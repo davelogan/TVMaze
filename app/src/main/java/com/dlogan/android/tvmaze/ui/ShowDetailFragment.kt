@@ -84,11 +84,16 @@ class ShowDetailFragment : Fragment(), TVMazeApiServiceImpl.ResponseCallback<Sho
         }catch (ex: Exception) {
             detail_summary.text = ""
         }
-        //detail_season_episode.text = String.format("Season: %d Episode: %d", data.)
-        detail_network.text = String.format("Network: %s", data.network?.name ?: "")
+
+        when {
+            data.network?.name!=null -> detail_network.text = String.format("Network: %s", data.network.name)
+            data.webChannel?.name!=null -> detail_network.text = String.format("Network: %s", data.webChannel.name )
+            else -> detail_network.text = String.format("Web Channel: %s", data.webChannel?.name)
+        }
         detail_schedule.text = String.format("Schedule: %s", data.schedule?.days?.toString() ?: "")
         detail_status.text = String.format("Status: %s", data.status ?: "")
         detail_type.text = String.format("Type: %s", data.type ?: "")
+
 
         //set image
         if (data.image?.original != null) {

@@ -18,10 +18,17 @@ package com.dlogan.android.tvmaze.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.paging.Config
+import androidx.paging.PagedList
 import androidx.paging.toLiveData
+
 import com.dlogan.android.tvmaze.data.epg.EpgDatabase
-import com.dlogan.android.tvmaze.utilities.COUNTRY_CODE
+import com.dlogan.android.tvmaze.data.epg.EpgRepository
+import com.dlogan.android.tvmaze.data.epg.ScheduledShow
+import com.dlogan.android.tvmaze.utilities.LogUtil
 import java.util.*
 
 /**
@@ -30,17 +37,21 @@ import java.util.*
 class OnNowShowsViewModel(app: Application) : AndroidViewModel(app) {
     val dao = EpgDatabase.getDatabase(app).scheduledShowDao()
 
-    /**
-     * We use -ktx Kotlin extension functions here, otherwise you would use LivePagedListBuilder(),
-     * and PagedList.Config.Builder()
-     */
-    val currentShows = dao.onNowShows(Date(), COUNTRY_CODE).toLiveData(Config(
-            pageSize = 30,
-            enablePlaceholders = true,
-            maxSize = 200))
+    val repo = EpgRepository.getInstance(dao)
+
+
+    private val date = MutableLiveData<Date>().apply { value = Date() }
+
+    val currentShows: LiveData<PagedList<ScheduledShow>> = Transformations.switchMap(date) {
+            repo.getOnNowShows(it).toLiveData(Config(
+                    pageSize = 30,
+                    enablePlaceholders = true,
+                    maxSize = 200))
+    }
 
     fun refresh() {
-
-        //itemDataSourceFactory.getItemLiveDataSource().getValue().invalidate()
+        val now = Date()
+        date.setValue(now)
+        LogUtil.debug("OnNowShowsViewModel", "refresh()")
     }
 }

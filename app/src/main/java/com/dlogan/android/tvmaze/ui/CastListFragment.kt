@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -56,6 +57,10 @@ class CastListFragment: Fragment(), TVMazeApiServiceImpl.ResponseCallback<List<C
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
 
+        }
+
+        if (data.isEmpty()) {
+            Toast.makeText(this.context, getString(R.string.text_no_crew_msg), Toast.LENGTH_LONG).show()
         }
     }
 

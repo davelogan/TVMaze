@@ -32,6 +32,7 @@ import com.dlogan.android.tvmaze.proxy.TVMazeApiServiceImpl
 import com.dlogan.android.tvmaze.proxy.dto.ShowDto
 import com.dlogan.android.tvmaze.ui.ShowsFragment.Companion.SHOW_ID_KEY
 import com.dlogan.android.tvmaze.utilities.FROM_HTML_MODE_COMPACT
+import com.dlogan.android.tvmaze.utilities.FROM_HTML_MODE_LEGACY
 import kotlinx.android.synthetic.main.fragment_show_detail.*
 import kotlinx.android.synthetic.main.fragment_show_detail.view.*
 
@@ -88,9 +89,8 @@ class ShowDetailFragment : Fragment(), TVMazeApiServiceImpl.ResponseCallback<Sho
 
         try {
             if (Build.VERSION.SDK_INT >= 24) {
-                Html.fromHtml(data.summary, FROM_HTML_MODE_COMPACT) // for 24 api and more
+                detail_summary?.text = Html.fromHtml(data.summary, FROM_HTML_MODE_LEGACY) // for 24 api and more
             } else {
-                Html.fromHtml(data.summary) // or for older api
             }
         }catch (ex: Exception) {
             detail_summary?.text = ""

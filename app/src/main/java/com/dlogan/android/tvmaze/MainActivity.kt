@@ -46,32 +46,6 @@ class MainActivity : AppCompatActivity() {
         ApplicationCrashHandler.installHandler()
     }
 
-    override fun onResume() {
-        super.onResume()
-        loadDatabase()
-    }
-
-    /**
-     * Will only actually re-load the database if it has never ran or if less than x hours.
-     */
-    fun loadDatabase() {
-        val constraints = Constraints.Builder()
-                .setRequiredNetworkType(NetworkType.CONNECTED)
-                .build()
-        val request = OneTimeWorkRequestBuilder<ShowDatabaseLoaderWorker>()
-                .setConstraints(constraints)
-                .build()
-        WorkManager.getInstance(this).enqueue(request)
-
-        //The PeriodicWorkRequestBuilder is in alpha and is buggy
-//        val workRequest = PeriodicWorkRequestBuilder<ShowDatabaseLoaderWorker>(1, TimeUnit.MINUTES)
-//                .setConstraints(constraints)
-//                .build()
-        //WorkManager.getInstance(this).enqueueUniquePeriodicWork("sync epg", ExistingPeriodicWorkPolicy.KEEP, workRequest)
-        //WorkManager.getInstance(this).enqueueUniquePeriodicWork("sync epg", ExistingPeriodicWorkPolicy.KEEP, workRequest)
-
-    }
-
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         // Now that BottomNavigationBar has restored its instance state
@@ -86,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNavigationBar() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
 
-        val navGraphIds = listOf(R.navigation.on_now, R.navigation.all_shows, R.navigation.about_me)
+        val navGraphIds = listOf(R.navigation.all_shows, R.navigation.on_now, R.navigation.about_me)
 
         // Setup the bottom navigation view with a list_navigation of navigation graphs
         val controller = bottomNavigationView.setupWithNavController(

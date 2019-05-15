@@ -22,12 +22,10 @@ class ShowDatabaseLoaderWorker(context: Context, workerParams: WorkerParameters)
     }
 
     override fun doWork(): Result {
+        val db = EpgDatabase.getDatabase(applicationContext)
         val prefs = Prefs(applicationContext)
 
-        val lastSyncTime = prefs.getLastSyncTimestamp()
-        val nowTime = System.currentTimeMillis()
-
-        if (nowTime-lastSyncTime < minInterval) {
+        if (!db.needsSync(applicationContext)) {
             // No need to get the data from the api again
             LogUtil.debug("ShowDatabaseLoaderWorker", "No need to get the data from the api again. We already have updated data")
             return Result.success()
@@ -56,12 +54,15 @@ class ShowDatabaseLoaderWorker(context: Context, workerParams: WorkerParameters)
         LogUtil.debug("ShowDatabaseLoaderWorker", "syncing db")
         val db = EpgDatabase.getDatabase(applicationContext)
 
+        val shows: ArrayList<ScheduledShow> = ArrayList()
         for(item in scheduleItems) {
             var show: ScheduledShow? = convert(item)
             if (show != null) {
-                db.scheduledShowDao().insert(show)
+               // db.scheduledShowDao().insert(show)
+                shows.add(show)
             }
         }
+        db.scheduledShowDao().insertAll(shows)
     }
 
     private fun convert(dto: ScheduleItemDto): ScheduledShow? {

@@ -17,19 +17,19 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/all_shows"
+        android:icon="@drawable/ic_list"
+        android:contentDescription="@string/cd_all_shows"
+        android:title="@string/title_all_shows" />
+    <item
         android:id="@+id/on_now"
         android:icon="@drawable/baseline_theaters_black_36"
         android:contentDescription="@string/cd_on_now"
         android:title="@string/title_on_now" >
     </item>
     <item
-        android:id="@+id/all_shows"
-        android:icon="@drawable/ic_list"
-        android:contentDescription="@string/cd_all_shows"
-        android:title="@string/title_all_shows" />
-    <item
         android:id="@+id/about_me"
         android:icon="@drawable/baseline_info_black_36"
-        android:contentDescription="@string/cd_about_me"
+        android:contentDescription="@string/cd_about"
         android:title="@string/title_about" />
 </menu>

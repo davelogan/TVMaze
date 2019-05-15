@@ -26,7 +26,7 @@ import com.dlogan.android.tvmaze.R
 import com.dlogan.android.tvmaze.proxy.TVMazeApiServiceImpl
 import com.dlogan.android.tvmaze.proxy.dto.PersonDto
 import kotlinx.android.synthetic.main.fragment_user_profile.*
-import kotlinx.android.synthetic.main.user_card.*
+import kotlinx.android.synthetic.main.person_card.*
 
 
 /**
@@ -61,27 +61,27 @@ class UserProfileFragment : Fragment(), TVMazeApiServiceImpl.ResponseCallback<Pe
         }
     }
 
-    override fun onDataReceived(data: PersonDto) {
+    override fun onDataReceived(data: PersonDto?) {
 
-        if (this.isDetached || this.context == null) {
+        if (this.isDetached || this.context == null || data == null) {
             return
         }
 
-        profile_user_name?.text = data?.name
+        profile_user_name?.text = data.name
 
         if (profile_pic != null) {
             //set image
-            if (data?.image?.original != null) {
-                Glide.with(this.context!!).load(data?.image.original).into(profile_pic)
+            if (data.image?.original != null) {
+                Glide.with(this.context!!).load(data.image.original).into(profile_pic)
             } else {
                 Glide.with(this.context!!).load(R.drawable.baseline_theaters_black_36).into(profile_pic)
             }
         }
 
-        snippet1?.text = String.format("Birthday: %s", data?.birthday ?: "Unknown")
-        snippet2?.text = String.format("Deathday: %s", data?.deathday ?: "Unknown")
-        snippet3?.text = String.format("Gender: %s", data?.gender ?: "Unknown")
-        snippet4?.text = data?.country?.name
+        snippet1?.text = String.format("Birthday: %s", data.birthday ?: "Unknown")
+        snippet2?.text = String.format("Deathday: %s", data.deathday ?: "Unknown")
+        snippet3?.text = String.format("Gender: %s", data.gender ?: "Unknown")
+        snippet4?.text = data.country?.name
     }
 
     override fun onDataFailure(error: String?) {

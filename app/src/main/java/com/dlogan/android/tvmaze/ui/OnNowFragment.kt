@@ -17,8 +17,6 @@
 package com.dlogan.android.tvmaze.ui
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +27,7 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
 import com.dlogan.android.tvmaze.R
 import com.dlogan.android.tvmaze.data.epg.ScheduledShow
+import com.dlogan.android.tvmaze.ui.viewmodels.OnNowShowsViewModel
 import kotlinx.android.synthetic.main.fragment_onnow.view.*
 
 
@@ -58,6 +57,16 @@ class OnNowFragment : ShowsFragment() {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        refresh()
+    }
+
+    private fun refresh() {
+        //ensure we only show the current shows when the user returns to this fragment
+        viewModel.refresh()
+    }
+
     private fun subscribeUi(adapter: ShowAdapter) {
         viewModel.currentShows.observe(viewLifecycleOwner, Observer { shows ->
             stopRefreshDisplay()
@@ -74,25 +83,5 @@ class OnNowFragment : ShowsFragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        refresh()
-    }
 
-    private fun stopRefreshDisplay() {
-        if (view?.swipe_container?.isRefreshing!!) {
-
-            //this.activity?.runOnUiThread { view?.swipe_container?.isRefreshing = false }
-
-            val handler = Handler(Looper.getMainLooper())
-            handler.postDelayed({
-                    view?.swipe_container?.isRefreshing = false
-            }, 1000)
-        }
-    }
-
-    private fun refresh() {
-        //ensure we only show the current shows when the user returns to this fragment
-        viewModel.refresh()
-    }
 }

@@ -21,8 +21,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.work.ListenableWorker
 import com.dlogan.android.tvmaze.data.Converters
 import com.dlogan.android.tvmaze.utilities.DATABASE_NAME
+import com.dlogan.android.tvmaze.utilities.LogUtil
+import com.dlogan.android.tvmaze.utilities.Prefs
+import com.dlogan.android.tvmaze.workers.ShowDatabaseLoaderWorker
 
 /**
  * The Room database for this EPG (Electronic Programming API)
@@ -51,5 +55,16 @@ abstract class EpgDatabase : RoomDatabase() {
                 return instance
             }
         }
+    }
+
+    fun needsSync(context: Context): Boolean {
+        val prefs = Prefs(context)
+        val lastSyncTime = prefs.getLastSyncTimestamp()
+        val nowTime = System.currentTimeMillis()
+
+        if (nowTime-lastSyncTime < ShowDatabaseLoaderWorker.minInterval) {
+            return false
+        }
+        return true
     }
 }

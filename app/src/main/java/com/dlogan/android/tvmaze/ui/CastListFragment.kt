@@ -46,7 +46,7 @@ class CastListFragment: Fragment(), TVMazeApiServiceImpl.ResponseCallback<List<C
         }
     }
 
-    override fun onDataReceived(data: List<CastMemberDto>) {
+    override fun onDataReceived(data: List<CastMemberDto>?) {
         if (this.isDetached || this.context == null || data == null) {
             return
         }

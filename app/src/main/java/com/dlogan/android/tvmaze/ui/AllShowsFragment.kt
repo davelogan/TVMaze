@@ -20,10 +20,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
 import com.dlogan.android.tvmaze.R
+import com.dlogan.android.tvmaze.data.epg.ScheduledShow
+import com.dlogan.android.tvmaze.ui.viewmodels.AllShowsViewModel
+import kotlinx.android.synthetic.main.fragment_onnow.view.*
 
 /**
  * Shows a static leaderboard with multiple users.
@@ -43,10 +48,28 @@ class AllShowsFragment : ShowsFragment() {
         val adapter = ShowAdapter()
         view.findViewById<RecyclerView>(R.id.show_list).adapter = adapter
 
-        // Subscribe the adapter to the ViewModel, so the items in the adapter are refreshed
-        // when the all_shows changes
-        viewModel.currentShows.observe(this, Observer(adapter::submitList))
+        subscribeUi(adapter)
+
+        view.swipe_container.setOnRefreshListener {
+            viewModel.refresh()
+        }
 
         return view
+    }
+
+    private fun subscribeUi(adapter: ShowAdapter) {
+        viewModel.allShows.observe(viewLifecycleOwner, Observer { shows ->
+            stopRefreshDisplay()
+            if (shows != null) {
+                adapter.submitList(shows)
+            }
+            displayNoShowsAvailableIfNeeded(shows)
+        })
+    }
+
+    private fun displayNoShowsAvailableIfNeeded(shows: PagedList<ScheduledShow>?) {
+        if (shows == null || shows.isEmpty()) {
+            Toast.makeText(this.context, getString(R.string.text_no_onnow_shows_msg), Toast.LENGTH_SHORT).show()
+        }
     }
 }

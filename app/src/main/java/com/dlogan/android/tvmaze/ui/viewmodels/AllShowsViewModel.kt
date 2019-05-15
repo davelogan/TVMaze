@@ -14,14 +14,20 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.ui
+package com.dlogan.android.tvmaze.ui.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.paging.Config
+import androidx.paging.PagedList
 import androidx.paging.toLiveData
 import com.dlogan.android.tvmaze.data.epg.EpgDatabase
+import com.dlogan.android.tvmaze.data.epg.ScheduledShow
 import com.dlogan.android.tvmaze.utilities.COUNTRY_CODE
+import java.util.*
 
 /**
  * A simple ViewModel that provides a paged all_shows shows.
@@ -29,17 +35,18 @@ import com.dlogan.android.tvmaze.utilities.COUNTRY_CODE
 class AllShowsViewModel(app: Application) : AndroidViewModel(app) {
     val dao = EpgDatabase.getDatabase(app).scheduledShowDao()
 
-    /**
-     * We use -ktx Kotlin extension functions here, otherwise you would use LivePagedListBuilder(),
-     * and PagedList.Config.Builder()
-     */
-    val currentShows = dao.allShows(COUNTRY_CODE).toLiveData(Config(
-            pageSize = 30,
-            enablePlaceholders = true,
-            maxSize = 200))
+    private val country = MutableLiveData<String>().apply { value = COUNTRY_CODE }
+
+    val allShows: LiveData<PagedList<ScheduledShow>> = Transformations.switchMap(country) {
+        dao.allShows(COUNTRY_CODE).toLiveData(Config(
+                pageSize = 30,
+                enablePlaceholders = true,
+                maxSize = 200))
+    }
+
+   // val count = MutableLiveData<Long>().apply { dao.count() }
 
     fun refresh() {
-
-        //itemDataSourceFactory.getItemLiveDataSource().getValue().invalidate()
+        country.value = COUNTRY_CODE
     }
 }

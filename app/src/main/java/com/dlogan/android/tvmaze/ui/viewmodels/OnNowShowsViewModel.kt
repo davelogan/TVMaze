@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dlogan.android.tvmaze.ui
+package com.dlogan.android.tvmaze.ui.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -39,7 +39,6 @@ class OnNowShowsViewModel(app: Application) : AndroidViewModel(app) {
 
     val repo = EpgRepository.getInstance(dao)
 
-
     private val date = MutableLiveData<Date>().apply { value = Date() }
 
     val currentShows: LiveData<PagedList<ScheduledShow>> = Transformations.switchMap(date) {
@@ -50,8 +49,7 @@ class OnNowShowsViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun refresh() {
-        val now = Date()
-        date.setValue(now)
+        date.value = Date()
         LogUtil.debug("OnNowShowsViewModel", "refresh()")
     }
 }

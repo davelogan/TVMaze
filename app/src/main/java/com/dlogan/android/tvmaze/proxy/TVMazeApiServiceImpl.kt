@@ -106,7 +106,7 @@ class TVMazeApiServiceImpl {
     //=======================================
 
     interface ResponseCallback<T> {
-        fun onDataReceived(data: T)
+        fun onDataReceived(data: T?)
 
         fun onDataFailure(error: String?)
     }

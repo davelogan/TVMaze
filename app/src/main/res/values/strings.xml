@@ -32,9 +32,9 @@
     <string name="losses">Losses</string>
     <string name="losses_amount">03</string>
     <string name="about">About</string>
-    <string name="about_me">About Dave Logan</string>
+    <string name="about_me">About</string>
     <string name="welcome">Welcome!</string>
-    <string name="about_description">This application showcases David Logan\'s ability to develop android applications using the TVMAZE API.
+    <string name="about_description">https://www.tvmaze.com/api
     </string>
     <string name="done">Done</string>
     <string name="title_about">About</string>
@@ -47,11 +47,12 @@
     <string name="cast_and_crew">Cast Members</string>
     <string name="cd_on_now">On Now</string>
     <string name="cd_all_shows">All Shows</string>
-    <string name="cd_about_me">About Me</string>
+    <string name="cd_about">About</string>
 
     <string name="sub_menu_refresh">Refresh</string>
     <string name="text_no_crew_msg">Crew List not available for this show</string>
     <string name="text_no_onnow_shows_msg">No shows are currently playing</string>
+    <string name="loading_epg">Loading EPG...</string>
 
 
 </resources>
